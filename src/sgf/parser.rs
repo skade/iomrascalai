@@ -1,6 +1,6 @@
 /************************************************************************
  *                                                                      *
- * Copyright 2014 Urban Hafner, Thomas Poinsot                          *
+ * Copyright 2014 Urban Hafner                                          *
  *                                                                      *
  * This file is part of Iomrascálaí.                                    *
  *                                                                      *
@@ -19,15 +19,21 @@
  *                                                                      *
  ************************************************************************/
 
-use board::{White, Black};
+use board::Board;
 
-mod board;
-mod sgf;
+pub struct Parser<'a> {
+    sgf: &'a str
+}
 
-fn main() {
-  let mut b = board::Board::new(19, 6.5);
-  b = b.play(Black, 4, 4);
-  b = b.play(White, 2, 9);
-  b = b.play(Black, 19, 19);
-  b.show();
+impl<'a> Parser<'a> {
+    // Why do I need all those life time parameters here?
+    pub fn new(sgf: &'a str) -> Parser<'a> {
+        Parser {sgf: sgf}
+    }
+
+    // Why are there no life time parameters necessary here?
+    pub fn board(&self) -> Board {
+        Board::new(0, 0.0)
+    }
+
 }

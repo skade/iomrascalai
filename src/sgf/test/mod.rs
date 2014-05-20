@@ -1,6 +1,6 @@
 /************************************************************************
  *                                                                      *
- * Copyright 2014 Urban Hafner, Thomas Poinsot                          *
+ * Copyright 2014 Urban Hafner                                          *
  *                                                                      *
  * This file is part of Iomrascálaí.                                    *
  *                                                                      *
@@ -19,15 +19,4 @@
  *                                                                      *
  ************************************************************************/
 
-use board::{White, Black};
-
-mod board;
-mod sgf;
-
-fn main() {
-  let mut b = board::Board::new(19, 6.5);
-  b = b.play(Black, 4, 4);
-  b = b.play(White, 2, 9);
-  b = b.play(Black, 19, 19);
-  b.show();
-}
+mod parser;

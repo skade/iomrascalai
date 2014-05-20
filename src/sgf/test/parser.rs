@@ -1,6 +1,6 @@
 /************************************************************************
  *                                                                      *
- * Copyright 2014 Urban Hafner, Thomas Poinsot                          *
+ * Copyright 2014 Urban Hafner                                          *
  *                                                                      *
  * This file is part of Iomrascálaí.                                    *
  *                                                                      *
@@ -19,15 +19,14 @@
  *                                                                      *
  ************************************************************************/
 
-use board::{White, Black};
+#[cfg(test)]
 
-mod board;
-mod sgf;
+use sgf::parser::Parser;
 
-fn main() {
-  let mut b = board::Board::new(19, 6.5);
-  b = b.play(Black, 4, 4);
-  b = b.play(White, 2, 9);
-  b = b.play(Black, 19, 19);
-  b.show();
+#[test]
+fn sets_the_board_size_from_sgf() {
+    let parser = Parser::new("(;SZ[19])");
+    let board  = parser.board();
+    // Is there only assert! or do things like assert_equal! exist, too?
+    assert!(board.size() == 19);
 }

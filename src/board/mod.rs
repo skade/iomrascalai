@@ -88,6 +88,10 @@ impl<'a> Board<'a> {
         self.komi
     }
 
+    pub fn size(&self) -> uint {
+        self.size
+    }
+
     // Note: Same as get(), the board is indexed starting at 1-1
     pub fn play(&self, c: Color, col: uint, row: uint) -> Board<'a> {
         let mut new_state = (*self).clone();
